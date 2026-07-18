@@ -383,6 +383,7 @@
   .timeline {
     --rail-size: 52px;
     --date-col: 0px;
+    --tl-kicker-col: 4.5rem;
   }
 
   .tl-entry {
@@ -399,6 +400,21 @@
     text-align: left;
     padding: 0;
     margin-bottom: var(--space-2xs);
+  }
+
+  .tl-reveal__inner {
+    padding-left: calc(var(--tl-kicker-col) + var(--space-sm));
+  }
+
+  .tl-media {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .tl-media img {
+    max-width: 100%;
+    inline-size: 100%;
+    height: auto;
   }
 }
 
