@@ -1,0 +1,177 @@
+---
+// About Me - a more personal, visual section. Prose is editable here.
+// To add a card image: import it and set `image`. Cards without one fall back
+// to a labelled placeholder, so `image` is optional.
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import thessaloniki from "../../assets/about/thessaloniki.jpg";
+import freezerRooms from "../../assets/about/freezer-rooms.JPEG";
+import newcastle from "../../assets/about/newcastle.jpeg";
+
+interface AboutCard {
+  title: string;
+  body: string;
+  image?: ImageMetadata;
+  // Shown in the placeholder box when no image is set yet.
+  label?: string;
+}
+
+const cards: AboutCard[] = [
+  {
+    image: thessaloniki,
+    title: "From Thessaloniki",
+    body: "Grew up in Thessaloniki, Greece - studied at the Aristotle University's High School where I first started learning programming at 13 years old.",
+  },
+  {
+    image: freezerRooms,
+    title: "Teenage Summer Work",
+    body: "Helped out (or tried to) at my dad's construction team. Building cold room warehouses in Germany.",
+  },
+  {
+    image: newcastle,
+    title: "Studied at Newcastle",
+    body: "Moved to the UK at 18 years old to study Computer Science at Newcastle University. Stayed in the UK ever since.",
+  },
+];
+
+const interests = ["Movies", "Books", "Gaming", "Science fiction", "Fantasy", "Guitar", "DIY"];
+---
+
+<section id="about" class="section about">
+  <div class="container">
+    <p class="section__eyebrow">About me</p>
+    <h2 class="section__title">A quick recap</h2>
+
+    <div class="about__lead">
+      <p>
+        I like building useful things. Here's some experiences that
+        led me to where I am now:
+      </p>
+    </div>
+
+    <div class="about__grid">
+      {
+        cards.map((c) => (
+          <article class="about__card">
+            {c.image ? (
+              <Image
+                class="about__img"
+                src={c.image}
+                alt={c.title}
+                width={600}
+                loading="lazy"
+              />
+            ) : (
+              <div class="about__img placeholder" aria-hidden="true">
+                <span>{c.label}</span>
+              </div>
+            )}
+            <h3 class="about__card-title">{c.title}</h3>
+            <p class="about__card-body">{c.body}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="about__interests">
+      <span class="about__interests-label">Off the clock</span>
+      <ul>
+        {interests.map((i) => <li>{i}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__lead {
+    max-width: var(--prose-width);
+    color: var(--text-muted);
+    font-size: var(--step-1);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .about__card {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    transition:
+      transform var(--dur-mid) var(--ease-out),
+      border-color var(--dur-mid) var(--ease-out);
+  }
+
+  .about__card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+  }
+
+  .about__img {
+    inline-size: 100%;
+    block-size: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-md);
+  }
+
+  /* Fallback placeholder needs a defined height since images set their own. */
+  .about__img.placeholder {
+    aspect-ratio: 4 / 3;
+  }
+
+  .about__card-title {
+    font-size: var(--step-0);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .about__card-body {
+    color: var(--text-muted);
+    font-size: var(--step--1);
+  }
+
+  .about__interests {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+  }
+
+  .about__interests-label {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .about__interests ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .about__interests li {
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--border);
+    background: var(--bg-elev-1);
+    font-size: var(--step--1);
+    color: var(--text);
+  }
+
+  @media (max-width: 820px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

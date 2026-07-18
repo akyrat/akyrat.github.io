@@ -1,0 +1,75 @@
+---
+import { skills } from "../../data/site";
+---
+
+<section id="skills" class="section skills">
+  <div class="container">
+    <p class="section__eyebrow">Skills &amp; tech</p>
+    <h2 class="section__title">Tools I work with</h2>
+
+    <div class="skills__grid">
+      {
+        skills.map((group) => (
+          <div class="skills__group">
+            <h3 class="skills__group-name">{group.group}</h3>
+            <ul class="skills__list">
+              {group.items.map((item) => (
+                <li class="skills__chip">{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .skills__group {
+    background: var(--bg-elev-1);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+  }
+
+  .skills__group-name {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+
+  .skills__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skills__chip {
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elev-2);
+    border: 1px solid var(--border);
+    font-size: var(--step--1);
+    color: var(--text);
+    transition:
+      border-color var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .skills__chip:hover {
+    border-color: var(--accent);
+    color: var(--accent-bright);
+  }
+</style>

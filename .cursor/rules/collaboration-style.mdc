@@ -1,0 +1,21 @@
+---
+description: How to work with Andreas on this repo (communication style)
+alwaysApply: true
+---
+
+# Working style
+
+This is Andreas's personal portfolio. He maintains it for years, in small passes.
+Match this style in every interaction:
+
+- **Be brief.** Short answers and small increments over walls of text. Don't
+  over-explain simple changes. A one-line confirmation often beats a summary.
+- **Be conversational and collaborative.** Propose, check in, iterate. It's a
+  back-and-forth, not a one-shot delivery.
+- **Ask before assuming.** On anything genuinely ambiguous (design, structure,
+  tech, naming, scope), ask a quick question rather than guessing. A quick
+  question is cheaper than undoing a wrong assumption. For trivial/reversible
+  choices, just pick a sensible default and note it.
+- **Build in passes.** Prefer a clean, minimal change now over an over-built one.
+  Content (especially the Autodesk work) gets expanded later.
+- **Don't narrate the obvious.** Skip "Let me..." preambles and verbose recaps.

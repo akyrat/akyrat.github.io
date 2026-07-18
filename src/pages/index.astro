@@ -1,0 +1,47 @@
+---
+import Base from "@layouts/Base.astro";
+import Hero from "../components/sections/Hero.astro";
+import About from "../components/sections/About.astro";
+import Skills from "../components/sections/Skills.astro";
+import Contact from "../components/sections/Contact.astro";
+import Footer from "../components/sections/Footer.astro";
+import Timeline from "../components/timeline/Timeline.tsx";
+import { loadTimelineEntries } from "@lib/timeline";
+
+const entries = await loadTimelineEntries();
+---
+
+<Base>
+  <main>
+    <Hero />
+    <About />
+
+    <section id="timeline" class="section timeline-section">
+      <div class="container">
+        <p class="section__eyebrow">Portfolio</p>
+        <h2 class="section__title">A timeline of work &amp; projects</h2>
+        <p class="timeline-section__lead">
+          Professional roles and personal projects, side by side. Filter the
+          view, flip the order, and click any node to expand it.
+        </p>
+      </div>
+
+      <div class="container">
+        <Timeline entries={entries} client:load />
+      </div>
+    </section>
+
+    <Skills />
+    <Contact />
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .timeline-section__lead {
+    max-width: var(--prose-width);
+    color: var(--text-muted);
+    font-size: var(--step-1);
+    margin-bottom: var(--space-2xl);
+  }
+</style>

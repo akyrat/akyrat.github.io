@@ -1,0 +1,40 @@
+---
+description: Architecture and content conventions for the portfolio
+alwaysApply: true
+---
+
+# Project conventions
+
+Astro + React island (timeline) + Framer Motion + TypeScript. Static site
+deployed to GitHub Pages at `akyrat.github.io`.
+
+## Maintainability is the #1 priority
+- **Separate content from presentation.** Never hardcode portfolio content in
+  components. Timeline entries live as one Markdown file each in
+  `src/content/timeline/`; the schema is `src/content/config.ts`.
+- Adding an entry must stay as simple as adding one `.md` file. If a change makes
+  content harder to edit, flag it.
+- Site identity, links and skills live in `src/data/site.ts`.
+
+## Assets
+- **Images** that should be optimized: `src/assets/...`, imported and rendered
+  with Astro's `<Image>` (auto WebP + resize).
+- **File attachments / downloads** (PDFs, etc.) and anything linked by a stable
+  URL: `public/...` (served from the site root, unprocessed).
+
+## Static / GitHub Pages
+- No backend, no SSR, no server runtime. Keep it buildable to static output.
+- Flag anything that won't work on GitHub Pages before building it.
+
+## Quality bar
+- Clean, fast, mobile-responsive. Respect `prefers-reduced-motion`.
+- Use the design tokens in `src/styles/tokens.css` (dark theme, cyan accent) -
+  avoid hardcoded colors/spacing.
+
+## Keep docs in sync
+After making changes, before wrapping up, check whether they invalidate any
+documentation and update it in the same pass so it never goes stale:
+- `README.md` (structure, schema, workflows, commands, deploy)
+- `.cursor/rules/` and `.cursor/skills/` (conventions or workflows that changed)
+If a change adds/renames a field, file location, script, or workflow, the docs
+that describe it should change too.
